@@ -2366,7 +2366,16 @@ long dbParseLink(const char *str, short ftype, dbLinkInfo *pinfo)
         /* filter modifiers based on link type */
         switch(ftype) {
         case DBF_INLINK: /* accept all */ break;
-        case DBF_OUTLINK: pinfo->modifiers &= ~pvlOptCPP; break;
+        case DBF_OUTLINK:
+            if(pinfo->modifiers & (pvlOptCPP)){
+                epicsPrintf("dbParseLink: Output link to %s was specified with \
+                CPP, which has no effect. \n\
+                Only CA affects local output links. \n\
+                Remote output link behavior is governed by the target record."
+                , pinfo->target);
+            }
+            pinfo->modifiers &= ~pvlOptCPP;
+            break;
         case DBF_FWDLINK: pinfo->modifiers &= pvlOptCA; break;
         }
     }

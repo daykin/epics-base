@@ -121,6 +121,11 @@ static void testLinkParse(void)
         dbFreeLinkInfo(&info);
     }
 
+    info.modifiers |= pvlOptCPP;
+    dbParseLink("something CPP", DBF_OUTLINK, &info);
+    testOk(info.modifiers == 0, "CPP modifier was discarded");
+    dbFreeLinkInfo(&info);
+
     testIocShutdownOk();
 
     testdbCleanup();
@@ -701,7 +706,7 @@ void testTSEL(void)
 
 MAIN(dbPutLinkTest)
 {
-    testPlan(348);
+    testPlan(349);
     testLinkParse();
     testLinkFailParse();
     testCADBSet();
