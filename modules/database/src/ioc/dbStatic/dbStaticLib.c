@@ -2381,14 +2381,14 @@ long dbParseLink(const char *str, short ftype, dbLinkInfo *pinfo)
         switch(ftype) {
         case DBF_INLINK: /* accept all */ break;
         case DBF_OUTLINK:
-            if(pinfo->modifiers & (pvlOptCPP)){
+            if(pinfo->modifiers & (pvlOptCPP|pvlOptCP)){
                 fprintf(stderr, "Warning: dbParseLink: Output link to %s was specified with \n\
-                CPP, which has no effect. \n\
+                CP/CPP, which has no effect. \n\
                 Only CA affects local output links. \n\
-                Remote output link behavior is governed by the target record.\n"
-                , pinfo->target);
+                Remote output link behavior is governed by the target record.\n",
+                pinfo->target);
             }
-            pinfo->modifiers &= ~pvlOptCPP;
+            pinfo->modifiers &= ~(pvlOptCPP|pvlOptCP);
             break;
         case DBF_FWDLINK: pinfo->modifiers &= pvlOptCA; break;
         }
