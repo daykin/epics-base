@@ -2382,7 +2382,7 @@ long dbParseLink(const char *str, short ftype, dbLinkInfo *pinfo)
         case DBF_INLINK: /* accept all */ break;
         case DBF_OUTLINK:
             if(pinfo->modifiers & (pvlOptCPP|pvlOptCP)){
-                fprintf(stderr, "Warning: dbParseLink: Output link to %s was specified with \n\
+                errlogPrintf("Warning: dbParseLink: Output link to %s was specified with \n\
                 CP/CPP, which has no effect. \n\
                 Only CA affects local output links. \n\
                 Remote output link behavior is governed by the target record.\n",
