@@ -794,7 +794,7 @@ static void refer ( MAC_HANDLE *handle, MAC_ENTRY *entry, int level,
     r++;
 
     /* translate name (may contain macro references); truncated
-       quietly if too long but always guaranteed zero-terminated */
+       quietly if too long but always guaranteed to be null terminated */
     trans( handle, entry, level + 1, macEnd, &r, &rn, rn + MAC_SIZE );
     refname[MAC_SIZE] = '\0';
 
@@ -895,7 +895,7 @@ static void refer ( MAC_HANDLE *handle, MAC_ENTRY *entry, int level,
         entry->error = TRUE;
         errval = ",undefined)";
         if ( (handle->flags & FLAG_SUPPRESS_WARNINGS) == 0 ) {
-            errlogPrintf( "macLib: macro %s is undefined (expanding %s %s)\n",
+            errlogPrintf( "macLib: macro %s is " ANSI_MAGENTA("undefined") " (expanding %s %s)\n",
                         refname, entry->type, entry->name );
         }
     }

@@ -43,7 +43,8 @@ extern "C" {
  * \param errorMessage A printf-style error message describing the error.
  * \param ... Any parameters required for the error message.
  */
-LIBCOM_API void cantProceed(
+LIBCOM_API EPICS_NORETURN
+void cantProceed(
     EPICS_PRINTF_FMT(const char *errorMessage), ...
 ) EPICS_PRINTF_STYLE(1,2);
 
@@ -66,7 +67,7 @@ LIBCOM_API void cantProceed(
  * Will never return NULL otherwise.
  */
 LIBCOM_API void * callocMustSucceed(size_t count, size_t size,
-    const char *errorMessage);
+    const char *errorMessage) EPICS_MALLOC(1,2);
 /** \brief A malloc() which suspends on error.
  * \param size Size of block to allocate.
  * \param errorMessage Context added to logged error message
@@ -75,7 +76,8 @@ LIBCOM_API void * callocMustSucceed(size_t count, size_t size,
  * Will always return NULL for a zero length allocation.
  * Will never return NULL otherwise.
  */
-LIBCOM_API void * mallocMustSucceed(size_t size, const char *errorMessage);
+LIBCOM_API void * mallocMustSucceed(size_t size, const char *errorMessage)
+    EPICS_MALLOC(1);
 /** @} */
 
 #ifdef __cplusplus

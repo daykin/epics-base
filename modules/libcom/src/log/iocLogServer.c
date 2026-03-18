@@ -111,7 +111,7 @@ int main(void)
         return IOCLS_ERROR;
     }
 
-    pserver->pfdctx = (void *) fdmgr_init();
+    pserver->pfdctx = fdmgr_init();
     if (!pserver->pfdctx) {
         fprintf(stderr, "iocLogServer: %s\n", strerror(errno));
         free(pserver);
@@ -134,7 +134,7 @@ int main(void)
     epicsSocketEnableAddressReuseDuringTimeWaitState ( pserver->sock );
 
     /* Zero the sock_addr structure */
-    memset((void *)&serverAddr, 0, sizeof serverAddr);
+    memset(&serverAddr, 0, sizeof serverAddr);
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(ioc_log_port);
 
@@ -480,14 +480,14 @@ static void acceptNewClient ( void *pParam )
      * this task will find out and exit
      */
     {
-        long true = 1;
+        long True = 1;
 
         status = setsockopt(
                 pclient->insock,
                 SOL_SOCKET,
                 SO_KEEPALIVE,
-                (char *)&true,
-                sizeof(true) );
+                (char *)&True,
+                sizeof(True) );
         if(status<0){
             fprintf(stderr, "Keepalive option set failed\n");
         }
@@ -670,7 +670,7 @@ static void writeMessagesToLog (struct iocLogClient *pclient)
         }
         else {
             if (status != ntci) {
-                fprintf(stderr, "iocLogServer: didnt calculate number of characters correctly?\n");
+                fprintf(stderr, "iocLogServer: didn't calculate number of characters correctly?\n");
             }
             pclient->pserver->filePos += status;
         }

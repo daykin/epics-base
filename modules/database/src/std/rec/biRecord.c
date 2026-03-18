@@ -76,7 +76,7 @@ rset biRSET={
     put_enum_str,
     get_graphic_double,
     get_control_double,
-	get_alarm_double
+    get_alarm_double
 };
 epicsExportAddress(rset,biRSET);
 
@@ -96,16 +96,16 @@ static long init_record(struct dbCommon *pcommon, int pass)
     recGblInitConstantLink(&prec->siol, DBF_USHORT, &prec->sval);
 
     if(!(pdset = (bidset *)(prec->dset))) {
-        recGblRecordError(S_dev_noDSET,(void *)prec,"bi: init_record");
+        recGblRecordError(S_dev_noDSET, prec, "bi: init_record");
         return(S_dev_noDSET);
     }
     /* must have read_bi function defined */
     if( (pdset->common.number < 5) || (pdset->read_bi == NULL) ) {
-        recGblRecordError(S_dev_missingSup,(void *)prec,"bi: init_record");
+        recGblRecordError(S_dev_missingSup, prec, "bi: init_record");
         return(S_dev_missingSup);
     }
     if( pdset->common.init_record ) {
-	if((status=(*pdset->common.init_record)(pcommon))) return(status);
+        if((status=(*pdset->common.init_record)(pcommon))) return(status);
     }
     prec->mlst = prec->val;
     prec->lalm = prec->val;
@@ -122,7 +122,7 @@ static long process(struct dbCommon *pcommon)
 
     if( (pdset==NULL) || (pdset->read_bi==NULL) ) {
         prec->pact=TRUE;
-        recGblRecordError(S_dev_missingSup,(void *)prec,"read_bi");
+        recGblRecordError(S_dev_missingSup, prec, "read_bi");
         return(S_dev_missingSup);
     }
 
