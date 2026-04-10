@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #*************************************************************************
 # SPDX-License-Identifier: EPICS
 # EPICS BASE is distributed subject to a Software License Agreement found
