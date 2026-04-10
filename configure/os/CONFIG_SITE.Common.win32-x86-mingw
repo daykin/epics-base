@@ -5,3 +5,6 @@
 # If readline is available uncomment the following line
 # to enable command-line editing and history support
 #COMMANDLINE_LIBRARY = READLINE
+
+SHARED_LIBRARIES=NO
+STATIC_BUILD=YES
