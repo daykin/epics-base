@@ -591,6 +591,11 @@ $(INSTALL_TEMPLATES_SUBDIR)/%: %
 
 include $(CONFIG)/RULES_EXPAND
 
+# Allow 3rd party modules to inject additional rules
+-include $(wildcard $(CONFIG)/rules.d/*.make)
+# old location
+-include $(wildcard $(EPICS_BASE)/configure/rules.d/*.make)
+
 .PRECIOUS: %.i %.o %.c %.nm %.cpp %.cc
 .PRECIOUS: $(COMMON_INC)
 
