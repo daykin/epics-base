@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!/usr/bin/perl
 ######################################################################
 # SPDX-License-Identifier: EPICS
 # EPICS BASE is distributed subject to a Software License Agreement

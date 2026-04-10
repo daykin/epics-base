@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!/usr/bin/perl
 
 # SPDX-FileCopyrightText: 1997 Argonne National Laboratory
 #

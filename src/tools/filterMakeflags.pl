@@ -1,4 +1,4 @@
-#!/bin/env perl
+#!/usr/bin/perl
 #
 # Filter all versions of GNU Make's MAKEFLAGS variable to return
 # only the single-letter flags. The content differed slightly

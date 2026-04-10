@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 #*************************************************************************
 # Copyright (c) 2018 UChicago Argonne LLC, as Operator of Argonne
 #     National Laboratory.
