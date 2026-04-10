@@ -16,11 +16,11 @@ ifneq ($(wildcard $(TOP)/configure/CONFIG_BASE_VERSION),)
   CONFIG = $(TOP)/configure
   BASE_TOP=YES
 else
-  ifneq ($(origin EPICS_BASE),file)
-    # Essential for the EPICS build system, see convertRelease.pl
-    $(error EPICS_BASE must be set in a configure/RELEASE file)
+  ifeq ($(CONFIG),/usr/lib/epics/configure)
+    CONFIG = /etc/epics/configure
+  else
+    CONFIG ?= /etc/epics/configure
   endif
-  CONFIG ?= $(EPICS_BASE)/configure
 endif
 
 # Provide a default if the user hasn't set EPICS_HOST_ARCH
