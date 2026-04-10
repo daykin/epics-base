@@ -42,9 +42,9 @@ define DEP_template
   $(2) : $(EPICS_HOST_ARCH)
   $(1)$(DIVIDER)$(2) : $(1)$(DIVIDER)$(EPICS_HOST_ARCH) O.$(2)
 endef
-$(foreach action, $(ACTIONS), \
+$(if $(SKIP_HOST),,$(foreach action, $(ACTIONS), \
     $(foreach arch, $(CROSS_ARCHS), \
-        $(eval $(call DEP_template,$(action),$(arch)))))
+        $(eval $(call DEP_template,$(action),$(arch))))))
 
 # Allows rebuild to work with parallel builds option, -j.
 ifeq (rebuild,$(filter rebuild,$(MAKECMDGOALS)))
