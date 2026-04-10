@@ -22,7 +22,7 @@
 #RTEMS_VERSION = 4.10.2
 #RTEMS_BASE = /usr/local/vw/rtems/rtems-4.10.2
 #RTEMS_VERSION = 5
-#RTEMS_BASE = /usr/local/vw/rtems/rtems-5.1
+#RTEMS_BASE = /usr
 
 # Cross-compile toolchain in $(RTEMS_TOOLS)/bin
 #
@@ -43,6 +43,6 @@ USE_GESYS = NO
 
 # Select the command-line-input library to use
 #
-COMMANDLINE_LIBRARY = EPICS
+COMMANDLINE_LIBRARY = LIBTECLA
 #COMMANDLINE_LIBRARY = LIBTECLA
 #COMMANDLINE_LIBRARY = READLINE
